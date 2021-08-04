@@ -46,6 +46,3 @@ Route::group(['prefix' => 'category'], function () {
         ->name('category.show');
 });
 
-
-//
-//
