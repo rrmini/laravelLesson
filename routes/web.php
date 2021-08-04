@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+//controllers
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+
+use App\Http\Controllers\CategoryController as CategoryController;
+use App\Http\Controllers\NewsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,19 +20,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
+})->name('root');
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+    Route::resource('categories', AdminCategoryController::class);
+    Route::resource('news', AdminNewsController::class);
 });
 
-Route::get('/hello/{name}', function (string $name) {
-    return "<h3> Hello, {$name}</h3>";
+
+Route::group(['prefix' => 'news'], function () {
+    Route::get('/', [NewsController::class, 'index'])->name('news');
+    Route::get('/show/{id}.html', [NewsController::class, 'show'])
+        ->where('id','\d+')->name('news.show');
 });
 
-Route::get('/news/', function () {
-    return "<h3> Latest news !!!</h3>";
+Route::group(['prefix' => 'category'], function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('category');
+    Route::get('/show/{id}', [CategoryController::class, 'show'])
+        ->where('id', '\d+')
+        ->name('category.show');
 });
 
-Route::get('/phpinfo', function () {
-    return phpinfo();
-});
 
+//
+//
