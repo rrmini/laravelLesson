@@ -40,7 +40,4 @@
     <div class="container">
         <p class="text-justify"> <?= $news['content'] ?> </p>
     </div>
-
-
-<!--<h3>News id = --><?//=$news['id']?><!--</h3>-->
 </body>
