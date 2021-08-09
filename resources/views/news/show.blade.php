@@ -18,3 +18,9 @@
     </a>
 @endsection
 
+@push('js')
+    <script>
+        alert("это новость про {{ $news['title'] }}")
+    </script>
+@endpush
+
