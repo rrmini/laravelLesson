@@ -8,7 +8,7 @@ class CategoryController extends Controller
 {
     public function index() {
         return view('category.index', [
-            'category' => $this->categoryList
+            'categoryList' => $this->categoryList
         ]);
     }
 
@@ -36,7 +36,7 @@ class CategoryController extends Controller
 
         return view('news.index', [
             'category' => $categoryList,
-            'news' => $newsList
+            'newsList' => $newsList
         ]);
 
     }

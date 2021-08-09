@@ -35,7 +35,11 @@ class Controller extends BaseController
             'title' => 'weather',
             'desc' => 'all about the weather'
         ],
-
+        [
+            'id' => 6,
+            'title' => 'Сплетни и слухи',
+            'desc' => 'Бабушка рассказала.'
+        ],
     ];
 
     protected $newsList = [
