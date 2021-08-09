@@ -1,4 +1,6 @@
 @extends('layouts.main')
+@section('title') Список категорий -@parent @stop
+@section('slug') Список категорий @stop
 @section('content')
     @forelse($categoryList as $category)
     <!-- Post preview-->

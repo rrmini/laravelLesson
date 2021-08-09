@@ -1,4 +1,6 @@
 @extends('layouts.main')
+@section('title') Новости {{ $category['title'] }} -@parent @stop
+@section('slug') Новости {{ $category['title'] }} @stop
 @section('content')
     <h1 class="">News {{ $category['title'] }}</h1>
     @forelse($newsList as $news)
