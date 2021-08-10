@@ -10,6 +10,9 @@ class IndexController extends Controller
     public function __invoke(Request $request)
     {
         // TODO: Implement __invoke() method.
-        return view('admin.index');
+        return view('admin.index', [
+            'countNews' => count($this->newsList),
+            'countCategories' => count($this->categoryList)
+        ]);
     }
 }
