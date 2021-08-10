@@ -46,3 +46,7 @@ Route::group(['prefix' => 'category'], function () {
         ->name('category.show');
 });
 
+Route::get('/test', function (){
+    return 'ответ Тест';
+});
+

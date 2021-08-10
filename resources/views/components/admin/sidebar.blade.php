@@ -36,13 +36,15 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('admin.categories.index') }}" class="nav-link">
+                        <a href="{{ route('admin.categories.index') }}"
+                           class="nav-link  @if(request()->routeIs('admin.categories.*')) active @endif" >
                             <i class="far fa-circle nav-icon"></i>
                             <p>Категории</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('admin.news.index') }}" class="nav-link">
+                        <a href="{{ route('admin.news.index') }}"
+                           class="nav-link @if(request()->routeIs('admin.news.*')) active @endif">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Новости</p>
                         </a>

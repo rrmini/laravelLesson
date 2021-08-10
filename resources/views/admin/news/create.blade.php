@@ -14,7 +14,8 @@
     </div><!-- /.row -->
     <div class="row mb-2">
         <div class="col-12">
-            <form action="" method="post">
+            <form action="{{ route('admin.news.store') }}" method="post">
+                @csrf
                 <div class="form-group">
                     <label for="title">Заголовок</label>
                     <input type="text" class="form-control" name="title" id="title">
