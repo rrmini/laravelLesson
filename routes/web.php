@@ -28,6 +28,10 @@ Route::get('/', function () {
     return view('home');
 })->name('root');
 
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('/', IndexController::class)->name('index');
     Route::resource('categories', AdminCategoryController::class);
