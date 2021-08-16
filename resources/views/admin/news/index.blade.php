@@ -18,7 +18,8 @@
                     <thead>
                         <tr>
                             <th>Заголовок</th>
-                            <th>Текст</th>
+                            <th>Статус</th>
+                            <th>Автор</th>
                             <th>Дата добавления</th>
                             <th>Управление</th>
                         </tr>
@@ -26,11 +27,12 @@
                     <tbody>
                         @forelse($newsList as $news)
                             <tr>
-                                <td>{{ $news['title'] }}</td>
-                                <td>{{ $news['content'] }}</td>
+                                <td>{{ $news->title }}</td>
+                                <td>{{ $news->status }}</td>
+                                <td>{{ $news->author }}</td>
                                 <td>{{ now()->format('d-m-Y H:i') }}</td>
                                 <td>
-                                    <a href="{{ route('admin.news.edit', [ 'news' => $news['id']]) }}" class="d-sm-inline-block btn btn-sm">
+                                    <a href="{{ route('admin.news.edit', [ 'news' => $news->id]) }}" class="d-sm-inline-block btn btn-sm">
                                         <i class="fas fa-edit fa-sm text-black-50 fa-align-right"></i>
                                     </a>
                                     <a href="javascript:" class="d-sm-inline-block btn btn-sm ">
