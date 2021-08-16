@@ -21,4 +21,9 @@ class Category extends Model
     {
         return \DB::table($this->table)->select(['id', 'title', 'desc'])->find($id);
     }
+
+    public function getCount()
+    {
+        return \DB::table($this->table)->count();
+    }
 }

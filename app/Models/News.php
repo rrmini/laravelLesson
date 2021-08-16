@@ -31,4 +31,9 @@ class News extends Model
         }
         return $result;
     }
+
+    public function getCount()
+    {
+        return \DB::table($this->table)->count();
+    }
 }
