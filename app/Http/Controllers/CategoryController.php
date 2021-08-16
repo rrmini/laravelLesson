@@ -2,22 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     public function index() {
+        $model = new Category();
+        $categories = $model->getCategories();
         return view('category.index', [
-            'categoryList' => $this->categoryList
+            'categoryList' => $categories
         ]);
     }
 
     public function show(int $id) {
-        $categoryList = [];
-        $newsList = [];
+        $categoryModel = new Category();
+        $newsModel = new News();
 
-        foreach ($this->categoryList as $category){
-            if( $category['id'] === $id ){
+        $categoryList = $categoryModel->getCategories();
+        $newsList = $newsModel->getNews();
+
+        foreach ($categoryList as $category){
+            if( $category->id === $id ){
                 $categoryList = $category;
             }
         }
@@ -26,8 +33,8 @@ class CategoryController extends Controller
             abort(404);
         }
 
-        foreach ($this->newsList as $news) {
-            if($news['categoryId'] === $id){
+        foreach ($newsList as $news) {
+            if($news->category_id === $id){
                 $newsList[] = $news;
             }
         }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\News;
+//use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
@@ -12,30 +14,18 @@ class NewsController extends Controller
         ]);
     }
 
-    public function show (int $id) {
-        $newsList = [];
-        $categoryTitle = '';
+    public function show (int $id)
+    {
+        $newsModel = new News();
+        $categoryModel = new Category();
 
-        foreach ($this->newsList as $news) {
-            if ($news['id'] === $id) {
-                $newsList = $news;
-            }
-        }
+        $news = $newsModel->getNewsById($id);
 
-        if(empty($newsList)) {
-            abort(404);
-        }
-
-        foreach ($this->categoryList as $category) {
-            if ($category['id'] === $newsList['categoryId']){
-                $categoryTitle = $category['title'];
-            }
-        }
+        $category = $categoryModel->getCategoryById($news->category_id);
 
         return view('news.show', [
-            'news' => $newsList,
-            'categoryTitle' => $categoryTitle
-//            'id' => $id
+            'news' => $news,
+            'categoryTitle' => $category->title
         ]);
     }
 }

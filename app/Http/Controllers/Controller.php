@@ -9,38 +9,38 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    protected $categoryList = [
-        [
-            'id' => 1,
-            'title' => 'politics',
-            'desc' => 'all about politics'
-        ],
-        [
-            'id' => 2,
-            'title' => 'science',
-            'desc' => 'all about science'
-        ],
-        [
-            'id' => 3,
-            'title' => 'culture',
-            'desc' => 'all about culture'
-        ],
-        [
-            'id' => 4,
-            'title' => 'sports',
-            'desc' => 'all about sports'
-        ],
-        [
-            'id' => 5,
-            'title' => 'weather',
-            'desc' => 'all about the weather'
-        ],
-        [
-            'id' => 6,
-            'title' => 'Сплетни и слухи',
-            'desc' => 'Бабушка рассказала.'
-        ],
-    ];
+//    protected $categoryList = [
+//        [
+//            'id' => 1,
+//            'title' => 'politics',
+//            'desc' => 'all about politics'
+//        ],
+//        [
+//            'id' => 2,
+//            'title' => 'science',
+//            'desc' => 'all about science'
+//        ],
+//        [
+//            'id' => 3,
+//            'title' => 'culture',
+//            'desc' => 'all about culture'
+//        ],
+//        [
+//            'id' => 4,
+//            'title' => 'sports',
+//            'desc' => 'all about sports'
+//        ],
+//        [
+//            'id' => 5,
+//            'title' => 'weather',
+//            'desc' => 'all about the weather'
+//        ],
+//        [
+//            'id' => 6,
+//            'title' => 'Сплетни и слухи',
+//            'desc' => 'Бабушка рассказала.'
+//        ],
+//    ];
 
 //    protected $newsList = [
 //        [

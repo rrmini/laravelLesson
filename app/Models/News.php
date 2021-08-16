@@ -11,7 +11,7 @@ class News extends Model
 {
     use HasFactory;
     protected $table = 'news';
-    protected $allowedFields = ['id', 'title', 'author', 'status', 'content'];
+    protected $allowedFields = ['id','category_id', 'title', 'author', 'status', 'content'];
 
     public function getNews(): Collection
     {
@@ -22,8 +22,13 @@ class News extends Model
 
     public function getNewsById(int $id): object
     {
-        return \DB::table($this->table)
+        $result =  \DB::table($this->table)
             ->select($this->allowedFields)
             ->find($id);
+
+        if($result === null) {
+            abort(404);
+        }
+        return $result;
     }
 }

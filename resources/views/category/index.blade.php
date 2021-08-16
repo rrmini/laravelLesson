@@ -5,9 +5,9 @@
     @forelse($categoryList as $category)
     <!-- Post preview-->
     <div class="post-preview">
-        <a href= "{{ route('category.show', ['id' => $category['id']]) }}" >
-            <h2 class="post-title">{{ $category['title'] }}</h2>
-            <h3 class="post-subtitle">brief description of the category {{ $category['desc'] }}</h3>
+        <a href= "{{ route('category.show', ['id' => $category->id]) }}" >
+            <h2 class="post-title">{{ $category->title }}</h2>
+            <h3 class="post-subtitle">brief description of the category {{ $category->desc }}</h3>
         </a>
         <p class="post-meta">
             Posted by
