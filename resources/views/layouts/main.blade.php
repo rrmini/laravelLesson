@@ -35,7 +35,7 @@
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
 <!-- Core theme JS-->
-<script src={{ asset('js/scripts.js') }}></script>
+cript src={{ asset('js/scripts.js') }}></script><s
 
 @stack('js')
 </body>
