@@ -13,15 +13,17 @@
         </div><!-- /.col -->
     </div><!-- /.row -->
     <div class="row mb-2">
+        @include('inc.message')
         <div class="col-12">
-            <form action="" method="post">
+            <form action="{{ route('admin.categories.store') }}" method="post">
+                @csrf
                 <div class="form-group">
                     <label for="title">Заголовок</label>
                     <input type="text" class="form-control" name="title" id="title">
                 </div>
                 <div class="form-group">
-                    <label for="content">Описание</label>
-                    <textarea class="form-control" name="content" id="content"></textarea>
+                    <label for="description">Описание</label>
+                    <textarea class="form-control" name="description" id="description"></textarea>
                 </div>
                 <button class="btn btn-primary">Сохранить</button>
             </form>

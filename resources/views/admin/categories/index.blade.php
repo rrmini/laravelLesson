@@ -12,6 +12,7 @@
         </div><!-- /.col -->
     </div><!-- /.row -->
     <div class="row">
+        @include('inc.message')
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
@@ -27,7 +28,7 @@
                         <tr>
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->title }}</td>
-                            <td>{{ $category->desc }}</td>
+                            <td>{{ $category->description }}</td>
                             <td>
                                 <a href="{{ route('admin.categories.edit', [ 'category' => $category->id ]) }}" class="d-sm-inline-block btn btn-sm">
                                     <i class="fas fa-edit fa-sm text-black-50 fa-align-right"></i>

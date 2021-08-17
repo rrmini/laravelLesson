@@ -15,8 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $model = new Category();
-        $categories = $model->getCategories();
+        $categories = Category::all();
 
 //        dd($model->getCategoryById(2));
 
@@ -43,7 +42,24 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'string']
+        ]);
+        $data = $request->only(['title', 'description']);
+
+        $category = Category::create($data);
+
+//        dd($category);
+
+        if($category){
+            return redirect()
+                ->route('admin.categories.index')
+                ->with('success', 'Категория успешно добавлена');
+        }
+
+        return back()
+            ->withInput()
+            ->with('error', 'Не удалось добавить категорию');
     }
 
     /**
