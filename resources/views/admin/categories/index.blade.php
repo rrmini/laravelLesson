@@ -17,7 +17,10 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>#ID</th>
+                        <th>#ID&nbsp;
+                            <a href="?sort=desc">ds</a> &nbsp;
+                            <a href="?sort=asc">as</a>
+                        </th>
                         <th>Заголовок</th>
                         <th>Текст</th>
                         <th>Управление</th>
@@ -46,6 +49,7 @@
 
                 </tbody>
             </table>
+            {{ $categories->links() }}
         </div>
     </div>
 @endsection
