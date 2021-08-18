@@ -18,7 +18,9 @@ class NewsController extends Controller
     {
 //        $model = new News();
 //        $newsList = $model->getNews();
-        $newsList = News::select(News::$allowedFields)->get();
+        $newsList = News::select(News::$allowedFields)->paginate(
+            config('paginate.admin.news')
+        );
 //        dd($newsList);
         return view('admin.news.index',[
             'newsList' => $newsList
@@ -51,7 +53,18 @@ class NewsController extends Controller
             'title' => ['required', 'string']
         ]);
 
-        $data = $request->only(['title', 'content', 'author']);
+        $data = $request->only(['title', 'content', 'author', 'status']);
+        $news = News::create($data);
+
+        if($news){
+            return redirect()
+                ->route('admin.news.index')
+                ->with('success', 'Новость успешно добавлена');
+        }
+
+        return back()
+            ->withInput()
+            ->with('error', 'Не удалось добавить новость');
     }
 
     /**
@@ -60,7 +73,7 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(News $news)
     {
         //
     }
@@ -68,24 +81,43 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  News $news
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(News $news)
     {
-        //
+        $categories = Category::all();
+        return view('admin.news.edit', [
+            'news' => $news,
+            'categories' => $categories,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  News  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, News $news)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'string']
+        ]);
+
+        $data = $request->only(['title', 'content', 'author', 'status']);
+        $news = $news->fill($data)->save();
+
+        if($news){
+            return redirect()
+                ->route('admin.news.index')
+                ->with('success', 'Новость успешно отредактирована');
+        }
+
+        return back()
+            ->withInput()
+            ->with('error', 'Не удалось отредактировать новость');
     }
 
     /**

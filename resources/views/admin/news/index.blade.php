@@ -13,6 +13,10 @@
     </div><!-- /.row -->
     <div class="row mb-2">
         <div class="col-12">
+            @include('inc.message')
+        </div>
+
+        <div class="col-12">
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead>
@@ -30,7 +34,8 @@
                                 <td>{{ $news->title }}</td>
                                 <td>{{ $news->status }}</td>
                                 <td>{{ $news->author }}</td>
-                                <td>{{ now()->format('d-m-Y H:i') }}</td>
+                                <td>@if($news->updated_at){{ $news->updated_at->format('d-m-Y H:i') }}
+                                    @else{{ now()->format('d-m-Y H:i') }}@endif</td>
                                 <td>
                                     <a href="{{ route('admin.news.edit', [ 'news' => $news->id]) }}" class="d-sm-inline-block btn btn-sm">
                                         <i class="fas fa-edit fa-sm text-black-50 fa-align-right"></i>
@@ -47,6 +52,7 @@
                         @endforelse
                     </tbody>
                 </table>
+                {{ $newsList->links() }}
             </div>
         </div>
     </div>

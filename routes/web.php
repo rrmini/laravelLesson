@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Collection;
 
 //controllers
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
@@ -52,7 +53,17 @@ Route::group(['prefix' => 'category'], function () {
         ->name('category.show');
 });
 
-Route::get('/test', function (){
-    return 'ответ Тест';
+Route::get('/collection', function (){
+    $collect = collect([
+        ['name' => 'Jhon', 'age' => 22, 'work' => 'IT'],
+        ['name' => 'Fill', 'age' => 25, 'work' => 'PR'],
+        ['name' => 'Kate', 'age' => 26, 'work' => 'Manager'],
+        ['name' => 'Mike', 'age' => 27, 'work' => 'Marketing'],
+        ['name' => 'Anna', 'age' => 18, 'work' => 'Junior'],
+    ]);
+
+    dd(
+        $collect->map(fn($people) => $people['work'])
+    );
 });
 

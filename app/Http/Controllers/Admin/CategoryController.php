@@ -48,8 +48,6 @@ class CategoryController extends Controller
 
         $category = Category::create($data);
 
-//        dd($category);
-
         if($category){
             return redirect()
                 ->route('admin.categories.index')
@@ -76,7 +74,7 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Category $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit (Category $category)
     {
