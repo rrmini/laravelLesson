@@ -76,24 +76,38 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Category $category
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit (Category $category)
     {
-        //
+        return view('admin.categories.edit', ['category' => $category]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Category $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'string']
+        ]);
+
+        $category = $category->fill($request->only(['title', 'description']))->save();
+
+        if($category){
+            return redirect()
+                ->route('admin.categories.index')
+                ->with('success', 'Категория успешно изменена');
+        }
+
+        return back()
+            ->withInput()
+            ->with('error', 'Не удалось изменить категорию');
     }
 
     /**
@@ -102,7 +116,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
         //
     }
