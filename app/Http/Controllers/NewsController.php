@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\News;
-//use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
@@ -16,14 +15,11 @@ class NewsController extends Controller
 
     public function show (News $news)
     {
-//        dd($news->category_id);
-        $category = Category::all()->where('id', '==', $news->category_id); //
-
-//        dd($category);
+        $category = Category::find($news->category_id);
 
         return view('news.show', [
             'news' => $news,
-            'categories' => $category
+            'category' => $category
         ]);
     }
 }

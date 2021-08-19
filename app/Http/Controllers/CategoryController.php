@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\News;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     public function index() {
-//        $model = new Category();
-        $categories = Category::all(); //$model->getCategories();
+        $categories = Category::all(); //  коллекция всех категорий
         return view('category.index', [
             'categoryList' => $categories
         ]);
