@@ -42,14 +42,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
 
 Route::group(['prefix' => 'news'], function () {
     Route::get('/', [NewsController::class, 'index'])->name('news');
-    Route::get('/show/{id}.html', [NewsController::class, 'show'])
-        ->where('id','\d+')->name('news.show');
+    Route::get('/show/{news}.html', [NewsController::class, 'show'])
+        ->where('news','\d+')->name('news.show');
 });
 
 Route::group(['prefix' => 'category'], function () {
     Route::get('/', [CategoryController::class, 'index'])->name('category');
-    Route::get('/show/{id}', [CategoryController::class, 'show'])
-        ->where('id', '\d+')
+    Route::get('/show/{category}', [CategoryController::class, 'show'])
+        ->where('categories', '\d+')
         ->name('category.show');
 });
 

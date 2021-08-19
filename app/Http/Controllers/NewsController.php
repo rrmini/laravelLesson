@@ -14,18 +14,16 @@ class NewsController extends Controller
         ]);
     }
 
-    public function show (int $id)
+    public function show (News $news)
     {
-        $newsModel = new News();
-        $categoryModel = new Category();
+//        dd($news->category_id);
+        $category = Category::all()->where('id', '==', $news->category_id); //
 
-        $news = $newsModel->getNewsById($id);
-
-        $category = $categoryModel->getCategoryById($news->category_id);
+//        dd($category);
 
         return view('news.show', [
             'news' => $news,
-            'categoryTitle' => $category->title
+            'categories' => $category
         ]);
     }
 }

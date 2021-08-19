@@ -18,10 +18,12 @@ class NewsController extends Controller
     {
 //        $model = new News();
 //        $newsList = $model->getNews();
-        $newsList = News::select(News::$allowedFields)->paginate(
+        $newsList = News::select(News::$allowedFields)
+            ->with('category')
+            ->paginate(
             config('paginate.admin.news')
         );
-//        dd($newsList);
+
         return view('admin.news.index',[
             'newsList' => $newsList
         ]);
@@ -53,7 +55,7 @@ class NewsController extends Controller
             'title' => ['required', 'string']
         ]);
 
-        $data = $request->only(['title', 'content', 'author', 'status']);
+        $data = $request->only(['category_id', 'title', 'content', 'author', 'status']);
         $news = News::create($data);
 
         if($news){
@@ -106,7 +108,7 @@ class NewsController extends Controller
             'title' => ['required', 'string']
         ]);
 
-        $data = $request->only(['title', 'content', 'author', 'status']);
+        $data = $request->only(['category_id', 'title', 'content', 'author', 'status']);
         $news = $news->fill($data)->save();
 
         if($news){

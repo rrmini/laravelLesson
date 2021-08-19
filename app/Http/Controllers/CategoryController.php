@@ -16,28 +16,10 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function show(int $category_id) {
+    public function show(Category $category) {
 //        show news by category_id
 
-        $category = Category::all();//$categoryModel->getCategories(); ->find(['id'=> $category_id])
-
-        $news = News::all()->where('category_id', $category_id);
-
-//        foreach ($categoryList as $category){
-//            if( $category->id === $id ){
-//                $categoryList = $category;//?
-//            }
-//        }
-//
-//        if(empty($categoryList)) {
-//            abort(404);
-//        }
-//
-//        foreach ($newsList as $news) {
-//            if($news->category_id === $id){
-//                $newsList[] = $news;
-//            }
-//        }
+        $news = News::all()->where('category_id', $category->id);
 
         return view('news.index', [
             'category' => $category,

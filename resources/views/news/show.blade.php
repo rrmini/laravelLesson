@@ -13,14 +13,14 @@
     <!-- Divider-->
     <hr class="my-4" />
 {{--    назад к списку новостей в категории --}}
-    <a class="nav-link" href={{ route('category.show', ['id' => $news->category_id]) }}>
-        Back to news list <span style="font-weight: bold">"{{ $categoryTitle }}"</span>
+    <a class="nav-link" href={{ route('category.show', [$news->category_id]) }}>
+        Back to news list <span style="font-weight: bold">""</span>
     </a>
 @endsection
 
-@push('js')
-    <script>
-        alert("это новость про {{ $news->title }}")
-    </script>
-@endpush
+{{--@push('js')--}}
+{{--    <script>--}}
+{{--        alert("это новость про {{ $news->title }}")--}}
+{{--    </script>--}}
+{{--@endpush--}}
 

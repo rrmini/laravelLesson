@@ -22,6 +22,7 @@
                     <thead>
                         <tr>
                             <th>Заголовок</th>
+                            <th>Категория</th>
                             <th>Статус</th>
                             <th>Автор</th>
                             <th>Дата добавления</th>
@@ -32,6 +33,7 @@
                         @forelse($newsList as $news)
                             <tr>
                                 <td>{{ $news->title }}</td>
+                                <td>{{ optional($news->category)->title }}</td>
                                 <td>{{ $news->status }}</td>
                                 <td>{{ $news->author }}</td>
                                 <td>@if($news->updated_at){{ $news->updated_at->format('d-m-Y H:i') }}
