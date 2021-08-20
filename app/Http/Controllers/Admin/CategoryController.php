@@ -42,7 +42,9 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => ['required', 'string']
+            'category_id' => ['required', 'numeric'],
+            'title' => ['required', 'string', 'min:5', 'max:191'],
+            'author' => ['required', 'string', 'min:2', 'max:80']
         ]);
         $data = $request->only(['title', 'description']);
 
@@ -91,7 +93,9 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'title' => ['required', 'string']
+            'category_id' => ['required', 'numeric'],
+            'title' => ['required', 'string', 'min:5', 'max:191'],
+            'author' => ['required', 'string', 'min:2', 'max:80']
         ]);
 
         $category = $category->fill($request->only(['title', 'description']))->save();

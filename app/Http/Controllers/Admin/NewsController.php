@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreNewsRequest;
+use App\Http\Requests\UpdateNewsRequest;
 use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Request;
@@ -16,8 +18,6 @@ class NewsController extends Controller
      */
     public function index()
     {
-//        $model = new News();
-//        $newsList = $model->getNews();
         $newsList = News::select(News::$allowedFields)
             ->with('category')
             ->paginate(
@@ -48,25 +48,16 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreNewsRequest $request)
     {
-//
-        $request->validate([
-            'title' => ['required', 'string']
-        ]);
-
-        $data = $request->only(['category_id', 'title', 'content', 'author', 'status']);
-        $news = News::create($data);
+        $news = News::create($request->validated());
 
         if($news){
-            return redirect()
-                ->route('admin.news.index')
+            return redirect()->route('admin.news.index')
                 ->with('success', 'Новость успешно добавлена');
         }
 
-        return back()
-            ->withInput()
-            ->with('error', 'Не удалось добавить новость');
+        return back()->withInput()->with('error', 'Не удалось добавить новость');
     }
 
     /**
@@ -102,14 +93,9 @@ class NewsController extends Controller
      * @param  News  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news)
+    public function update(UpdateNewsRequest $request, News $news)
     {
-        $request->validate([
-            'title' => ['required', 'string']
-        ]);
-
-        $data = $request->only(['category_id', 'title', 'content', 'author', 'status']);
-        $news = $news->fill($data)->save();
+        $news = $news->fill($request->validated())->save();
 
         if($news){
             return redirect()
