@@ -14,14 +14,14 @@
     </div><!-- /.row -->
     <div class="row mb-2">
         <div class="col-12">
-            @if($errors->any())
-                @foreach($errors->all() as $error)
-                    <div class="alert alert-danger">
-                        {{ $error }}
-                    </div>
-                @endforeach
-            @endif
-            @include('inc.message')
+{{--            @if($errors->any())--}}
+{{--                @foreach($errors->all() as $error)--}}
+{{--                    <div class="alert alert-danger">--}}
+{{--                        {{ $error }}--}}
+{{--                    </div>--}}
+{{--                @endforeach--}}
+{{--            @endif--}}
+{{--            @include('inc.message')--}}
             <form action="{{ route('admin.news.update', [ 'news' => $news]) }}" method="post">
                 @csrf
                 @method('put')
@@ -40,10 +40,16 @@
                 <div class="form-group">
                     <label for="title">Заголовок</label>
                     <input type="text" class="form-control" name="title" id="title" value="{{ $news->title }}">
+                    @error('title')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="author">Автор</label>
                     <input type="text" class="form-control" name="author" id="author" value="{{ $news->author }}"></input>
+                    @error('author')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="image">Изображение</label>
