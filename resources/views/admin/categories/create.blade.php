@@ -13,6 +13,13 @@
         </div><!-- /.col -->
     </div><!-- /.row -->
     <div class="row mb-2">
+        @if($errors->any())
+            @foreach($errors->all() as $error)
+                <div class="alert alert-danger">
+                    {{ $error }}
+                </div>
+            @endforeach
+        @endif
         @include('inc.message')
         <div class="col-12">
             <form action="{{ route('admin.categories.store') }}" method="post">
