@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -39,16 +41,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        $request->validate([
-            'category_id' => ['required', 'numeric'],
-            'title' => ['required', 'string', 'min:5', 'max:191'],
-            'author' => ['required', 'string', 'min:2', 'max:80']
-        ]);
-        $data = $request->only(['title', 'description']);
-
-        $category = Category::create($data);
+        $category = Category::create($request->validated());
 
         if($category){
             return redirect()
@@ -86,19 +81,13 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateCategoryRequest  $request
      * @param  Category $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $request->validate([
-            'category_id' => ['required', 'numeric'],
-            'title' => ['required', 'string', 'min:5', 'max:191'],
-            'author' => ['required', 'string', 'min:2', 'max:80']
-        ]);
-
-        $category = $category->fill($request->only(['title', 'description']))->save();
+        $category = $category->fill($request->validated())->save();
 
         if($category){
             return redirect()
