@@ -7,7 +7,9 @@ use App\Http\Requests\StoreNewsRequest;
 use App\Http\Requests\UpdateNewsRequest;
 use App\Models\Category;
 use App\Models\News;
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
+
+//use Illuminate\Http\JsonResponse;
 
 class NewsController extends Controller
 {
@@ -111,11 +113,20 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  News $news
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Request $request, News $news)
     {
-        //
+        if($request->ajax()){
+            try{
+                $news->delete();
+                return response()->json('ok');
+            }
+            catch (\Exception $e){
+                \Log::error($e->getMessage());
+                return response()->json('error', 400);
+            }
+        }
     }
 }

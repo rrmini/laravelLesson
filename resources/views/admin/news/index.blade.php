@@ -42,7 +42,7 @@
                                     <a href="{{ route('admin.news.edit', [ 'news' => $news->id]) }}" class="d-sm-inline-block btn btn-sm">
                                         <i class="fas fa-edit fa-sm text-black-50 fa-align-right"></i>
                                     </a>
-                                    <a href="javascript:" class="d-sm-inline-block btn btn-sm ">
+                                    <a href="javascript:" rel="{{ $news->id }}" class="d-sm-inline-block btn btn-sm delete">
                                         <i class="fas fa-trash fa-sm  text-danger"></i>
                                     </a>
                                 </td>
@@ -58,5 +58,28 @@
             </div>
         </div>
     </div>
-
 @endsection
+@push('js')
+    <script type="text/javascript">
+        $(function (){
+            $(".delete").on('click', function (){
+                var id = $(this).attr('rel');
+                if (confirm("Удалить ? тоно ? #" + id + "?")) {
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: "DELETE",
+                        url: "/admin/news/" + id,
+                        dataType: 'json',
+                        success: function (response) {
+                            console.log(response)
+                            alert("Новость удалена");
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+@endpush
