@@ -22,12 +22,12 @@ use App\Http\Controllers\NewsController;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
 Route::get('/', function () {
-    return view('home');
-})->name('root');
+    return view('welcome');
+});
+//Route::get('/', function () {
+//    return view('index');
+//})->name('root');
 
 Route::get('/contact', function () {
     return view('contact');
@@ -67,3 +67,7 @@ Route::get('/collection', function (){
     );
 });
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
