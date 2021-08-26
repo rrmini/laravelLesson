@@ -15,8 +15,8 @@ class IndexController extends Controller
         $newsModel = new News();
         $categoryModel = new Category();
         return view('admin.index', [
-            'countNews' => $newsModel->getCount(),
-            'countCategories' => $categoryModel->getCount()
+            'countNews' => News::count(),
+            'countCategories' => Category::count()
         ]);
     }
 }
