@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ParserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Collection;
 
@@ -39,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('account');
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function() {
         Route::get('/', IndexController::class)->name('index');
+        Route::get('parser', ParserController::class)->name('parser');
         Route::resource('categories', AdminCategoryController::class);
         Route::resource('news', AdminNewsController::class);
 //        Route::resource('users', );
