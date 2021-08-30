@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', IndexController::class)->name('index');
         Route::resource('categories', AdminCategoryController::class);
         Route::resource('news', AdminNewsController::class);
+//        Route::resource('users', );
     });
 });
 
