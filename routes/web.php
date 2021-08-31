@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Collection;
 
 //controllers
+use App\Http\Controllers\SocialController;
 use App\Http\Controllers\Account\IndexController as AccountController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
@@ -80,3 +81,10 @@ Route::get('/collection', function (){
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/init/vkontakte', [SocialController::class, 'init'])
+        ->name('vk.init');
+    Route::get('/callback/vkontakte', [SocialController::class, 'callback'])
+        ->name('vk.callback');
+});

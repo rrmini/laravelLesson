@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\Parser;
 use App\Http\Controllers\Controller;
-use App\Services\ParserService;
 use Illuminate\Http\Request;
 
 class ParserController extends Controller
@@ -14,11 +14,10 @@ class ParserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, Parser $parser)
     {
         $url = "https://news.yandex.ru/sport.rss";
 
-        $objService = new ParserService();
-        dd($objService->getDate($url));
+        dd($parser->getDate($url));
     }
 }
