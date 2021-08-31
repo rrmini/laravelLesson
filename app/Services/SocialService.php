@@ -11,6 +11,7 @@ class SocialService implements Social
 
     public function saveUser(User $user): string
     {
+//        dd($user);
         $currentUser = Model::where('email', $user->getEmail())->first();
 
         if($currentUser ){

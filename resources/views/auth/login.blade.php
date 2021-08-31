@@ -8,7 +8,13 @@
                 <div class="card-header">{{ __('Вход') }}</div>
 
                 <div class="card-body">
-                    <a href="{{ route('vk.init') }}">Авторизация через VK</a>
+                    <p>
+                        <a href="{{ route('social.init', ['social' => 'vkontakte']) }}">Авторизация через VK</a>
+                    </p>
+                    <p>
+                        <a href="{{ route('social.init', ['social' => 'google']) }}">Авторизация через GOOGLE</a>
+                    </p>
+
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

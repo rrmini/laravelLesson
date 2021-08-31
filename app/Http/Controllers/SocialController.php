@@ -7,15 +7,15 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialController extends Controller
 {
-    public function init (/*string $social*/)
+    public function init (string $social)
     {
-        return Socialite::driver('vkontakte')->redirect();
+        return Socialite::driver($social)->redirect();
     }
 
-    public function callback (Social $social)
+    public function callback (Social $social, string $driver)
     {
         return redirect($social->saveUser(
-            Socialite::driver('vkontakte')->user()
+            Socialite::driver($driver)->user()
         ));
     }
 }
