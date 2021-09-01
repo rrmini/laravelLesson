@@ -83,10 +83,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'guest'], function () {
-    Route::get('/init/{social}', [SocialController::class, 'init'])
-        ->name('social.init');
+    Route::get('/init/{provider}', [SocialController::class, 'init'])
+        ->name('provider.init');
     Route::get('/callback/{driver}', [SocialController::class, 'callback'])
         ->name('social.callback');
-//    Route::get('/callback/google', [SocialController::class, 'callback'])
-//        ->name('vk.callback');
 });

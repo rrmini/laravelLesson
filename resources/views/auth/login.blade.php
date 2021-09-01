@@ -9,10 +9,13 @@
 
                 <div class="card-body">
                     <p>
-                        <a href="{{ route('social.init', ['social' => 'vkontakte']) }}">Авторизация через VK</a>
+                        <a href="{{ route('provider.init', ['provider' => 'vkontakte']) }}">Авторизация через VK</a>
                     </p>
                     <p>
-                        <a href="{{ route('social.init', ['social' => 'google']) }}">Авторизация через GOOGLE</a>
+                        <a href="{{ route('provider.init', ['provider' => 'google']) }}">Авторизация через GOOGLE</a>
+                    </p>
+ <p>
+                        <a href="{{ route('provider.init', ['provider' => 'facebook']) }}">Авторизация через FACEBOOK</a>
                     </p>
 
                     <form method="POST" action="{{ route('login') }}">
