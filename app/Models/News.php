@@ -15,7 +15,7 @@ class News extends Model
 
     public static $allowedFields = ['id','category_id', 'title', 'author', 'status', 'content', 'updated_at'];
 
-    protected $fillable = ['category_id','title', 'content', 'author', 'status'];
+    protected $fillable = ['category_id','title', 'content', 'author', 'status', 'image'];
 
     public function category(): BelongsTo
     {
