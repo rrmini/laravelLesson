@@ -7,9 +7,13 @@
         <!-- Post preview-->
         <div class="post-preview">
             <a href= "{{ route('news.show', [ 'news' => $news->id]) }}" >
-                <h2 class="post-title"> {{ $news->title }}</h2>
-                <h3 class="post-subtitle">{{ $news->content }}</h3>
+                <h2 class="post-title"> <u>{{ $news->title }}</u></h2>
             </a>
+            @if($news->image)
+                <p>foto</p>
+                <img src="{{ Storage::disk('public')->url($news->image) }}" alt="..." class="img-thumbnail">
+            @endif
+            <p class="post-subtitle">{{ $news->content }}</p>
             <p class="post-meta">
                 Posted by
                 <a href="#!">{{ $news->author }}</a>
